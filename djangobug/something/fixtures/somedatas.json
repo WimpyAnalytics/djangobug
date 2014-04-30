@@ -1,0 +1,44 @@
+[
+{
+    "pk": 1, 
+    "model": "something.somedata", 
+    "fields": {
+        "field1": false
+    }
+},
+{
+    "pk": 2, 
+    "model": "something.somedata", 
+    "fields": {
+        "field1": true
+    }
+},
+{
+    "pk": 3, 
+    "model": "something.somedata", 
+    "fields": {
+        "field1": false
+    }
+},
+{
+    "pk": 4, 
+    "model": "something.somedata", 
+    "fields": {
+        "field1": false
+    }
+},
+{
+    "pk": 5, 
+    "model": "something.somedata", 
+    "fields": {
+        "field1": false
+    }
+},
+{
+    "pk": 6, 
+    "model": "something.somedata", 
+    "fields": {
+        "field1": false
+    }
+}
+]
