@@ -51,6 +51,7 @@ CACHES = {
 # See: http://django-debug-toolbar.readthedocs.org/en/latest/installation.html#explicit-setup
 INSTALLED_APPS += (
     'debug_toolbar',
+    'django_nose',
 )
 
 MIDDLEWARE_CLASSES += (
@@ -62,3 +63,12 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # http://django-debug-toolbar.readthedocs.org/en/latest/installation.html
 INTERNAL_IPS = ('127.0.0.1',)
 ########## END TOOLBAR CONFIGURATION
+
+# Testing
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = ['--logging-clear-handlers']
+
+# Logging
+LOGGING['handlers']['console']['level'] = 'DEBUG'
+LOGGING['loggers']['django.request']['level'] = 'DEBUG'
+LOGGING['loggers']['celery']['level'] = 'DEBUG'
