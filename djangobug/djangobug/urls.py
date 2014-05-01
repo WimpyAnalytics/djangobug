@@ -9,6 +9,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='base.html')),
+    #Zinnia
+    url(r'^weblog/', include('zinnia.urls')),
+    url(r'^comments/', include('django.contrib.comments.urls')),
 
     # Examples:
     # url(r'^$', 'djangobug.views.home', name='home'),

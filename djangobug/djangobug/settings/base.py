@@ -139,6 +139,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    'zinnia.context_processors.version',  # Optional
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
@@ -256,6 +257,9 @@ WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 INSTALLED_APPS += (
     # Database migration helpers:
     'south',
+    'tagging',
+    'mptt',
+    'zinnia',
 )
 # Don't need to use South when setting up a test database.
 SOUTH_TESTS_MIGRATE = False

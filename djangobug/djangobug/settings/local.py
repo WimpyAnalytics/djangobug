@@ -34,6 +34,15 @@ DATABASES = {
         'PORT': '',
     }
 }
+# Comment out the below to fall back to sqlite.
+#DATABASES['default'].update({
+#    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#    'NAME': 'djangobug',
+#    'USER': 'django',
+#    'PASSWORD': 'secret',
+#    'HOST': '',
+#    'PORT': '',
+#})
 ########## END DATABASE CONFIGURATION
 
 
