@@ -250,3 +250,19 @@ INSTALLED_APPS += (
 # Don't need to use South when setting up a test database.
 SOUTH_TESTS_MIGRATE = False
 ########## END SOUTH CONFIGURATION
+
+# Celery Configuration
+# We don't use a result store
+
+
+# For easier testing, causes tasks to execute immediately and not queue.
+# Set this to false if you would like to test locally with Redis.
+CELERY_ALWAYS_EAGER = True
+CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+
+BROKER_TRANSPORT_OPTIONS = {
+    'fanout_prefix': True,
+    'fanout_patterns': True
+}
+
+BROKER_URL = 'redis://localhost:6379/0'
