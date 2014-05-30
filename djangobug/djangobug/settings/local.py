@@ -1,8 +1,5 @@
 """Development settings and globals."""
-
 from __future__ import absolute_import
-
-from os.path import join, normpath
 
 from .base import *
 
@@ -44,17 +41,6 @@ DATABASES = {
 #    'PORT': '',
 #})
 ########## END DATABASE CONFIGURATION
-
-
-########## CACHE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-    }
-}
-########## END CACHE CONFIGURATION
-
 
 ########## TOOLBAR CONFIGURATION
 # See: http://django-debug-toolbar.readthedocs.org/en/latest/installation.html#explicit-setup

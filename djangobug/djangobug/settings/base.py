@@ -1,5 +1,7 @@
 """Common settings and globals."""
 
+import os
+import urlparse
 
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
@@ -168,6 +170,26 @@ MIDDLEWARE_CLASSES = (
 )
 ########## END MIDDLEWARE CONFIGURATION
 
+########## CACHE CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
+redis_url = urlparse.urlparse(os.environ.get('OPENREDIS_URL', 'redis://localhost:6379'))
+redis_db = 0
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.cache.RedisCache',
+        'LOCATION': '{}:{}:{}'.format(redis_url.hostname, redis_url.port, redis_db),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+            'PASSWORD': redis_url.password,  # Optional
+        },
+        'VERSION': 1,
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+########## END CACHE CONFIGURATION
 
 ########## URL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf

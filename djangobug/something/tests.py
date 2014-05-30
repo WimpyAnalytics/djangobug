@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.core.cache import cache
 
 import models
 from zinnia.models import Category, Entry
@@ -16,7 +17,7 @@ class SomeTest(TestCase):
         )
         self.entry.categories.add(self.category)
 
-    def test_something_fail(self):
+    def test_something2(self):
         models.SomeData.objects.all()
         #self.fail('A failure')
 
@@ -25,12 +26,16 @@ class SomeTest2(TestCase):
 
     fixtures = ['somedatas']
 
-    def test_something_error(self):
+    def setUp(self):
+        for key in cache.iter_keys('*something*'):
+            cache.delete(key)
+
+    def test_something1(self):
         models.SomeData.objects.all()
 
         data = models.SomeData.objects.create(field1=False)
         data.field = True
-        #data.save1()
+        data.save()
 
     def test_something_pass(self):
         models.SomeData.objects.all()
@@ -38,3 +43,6 @@ class SomeTest2(TestCase):
         data = models.SomeData.objects.create(field1=False)
         data.field1 = True
         data.save()
+
+        keys = [cache.iter_keys('*something*')]
+        self.assertEquals(len(keys), 1)
