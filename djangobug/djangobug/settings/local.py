@@ -66,4 +66,3 @@ NOSE_ARGS = ['--logging-clear-handlers']
 # Logging
 LOGGING['handlers']['console']['level'] = 'DEBUG'
 LOGGING['loggers']['django.request']['level'] = 'DEBUG'
-LOGGING['loggers']['celery']['level'] = 'DEBUG'

@@ -172,23 +172,6 @@ MIDDLEWARE_CLASSES = (
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
-redis_url = urlparse.urlparse(os.environ.get('OPENREDIS_URL', 'redis://localhost:6379'))
-redis_db = 0
-
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.cache.RedisCache',
-        'LOCATION': '{}:{}:{}'.format(redis_url.hostname, redis_url.port, redis_db),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
-            'PASSWORD': redis_url.password,  # Optional
-        },
-        'VERSION': 1,
-    }
-}
-
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
 ########## END CACHE CONFIGURATION
 
 ########## URL CONFIGURATION
@@ -258,11 +241,6 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'celery': {
-            'handlers': ['mail_admins', 'console'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
     }
 }
 ########## END LOGGING CONFIGURATION
@@ -272,33 +250,3 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
-
-
-########## SOUTH CONFIGURATION
-# See: http://south.readthedocs.org/en/latest/installation.html#configuring-your-django-installation
-INSTALLED_APPS += (
-    # Database migration helpers:
-    'south',
-    'tagging',
-    'mptt',
-    'zinnia',
-)
-# Don't need to use South when setting up a test database.
-SOUTH_TESTS_MIGRATE = False
-########## END SOUTH CONFIGURATION
-
-# Celery Configuration
-# We don't use a result store
-
-
-# For easier testing, causes tasks to execute immediately and not queue.
-# Set this to false if you would like to test locally with Redis.
-CELERY_ALWAYS_EAGER = True
-CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
-
-BROKER_TRANSPORT_OPTIONS = {
-    'fanout_prefix': True,
-    'fanout_patterns': True
-}
-
-BROKER_URL = 'redis://localhost:6379/0'
