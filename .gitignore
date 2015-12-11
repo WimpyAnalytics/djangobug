@@ -54,3 +54,4 @@ docs/_build/
 
 virtualenv
 .idea
+venv
