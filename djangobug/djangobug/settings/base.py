@@ -200,6 +200,7 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'common',
     'something',
     'somethingelse',
 )
@@ -250,3 +251,6 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
+
+
+AUTH_USER_MODEL = 'common.CustomUser'

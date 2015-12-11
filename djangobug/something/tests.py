@@ -12,5 +12,5 @@ class SomeTest(TestCase):
         pass
 
     def test_something2(self):
-        models.SomeData.objects.all()
+        models.SomethingConcrete.objects.all()
         #self.fail('A failure')
